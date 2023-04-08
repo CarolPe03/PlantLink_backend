@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlantLink</title>
+    <!-- BOOSTRAP CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+    <!-- Toastify CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!-- Scripts de la frase -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <!-- Title -->
+    <title>PlantLink</title>
+    <link rel="stylesheet" href="public/index_estilos/css/themify-icons.css">
+    <!-- Imagen pestaña -->
+    <link rel="icon" href="public/index_estilos/img/core-img/Logo_sin.png">
+    <link rel="stylesheet" href="index_estilos/css/themify-icons2.css">
+    <!-- Estilo del menu -->
+    <link rel="stylesheet" href="public/index_estilos/style.css">
+    <link rel="stylesheet" href="public/index_estilos/css/styles_movil.css">
+    <link rel="stylesheet" href="public/index_estilos/css/animate.css">
+    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js"></script>
+  
+
+    <style>
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .title-wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 75%;
+        }
+
+
+        .logo-wrapper img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .modal-header h3,
+        .modal-header p {
+            margin: 0;
+        }
+
+        .modal-header p {
+            font-size: 0.9em;
+        }
+
+        .modal-header h3 {
+            color: rgb(13, 8, 88);
+        }
+
+        .google-signin {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* añadido para alinear verticalmente los botones */
+            margin-top: 20px;
+        }
+
+        .google-signin-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            height: 50px;
+            margin: 0 10px;
+            border: none;
+            background-color: #ffffff;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        .google-signin-button:hover {
+            cursor: pointer;
+        }
+
+        .google-signin-button img {
+            width: 30px;
+            margin-right: 10px;
+        }
+
+        .google-signin-button span {
+            font-size: 16px;
+            font-weight: bold;
+            color: #757575;
+            text-align: center;
+        }
+
+        .facebook-button {
+            background-color: #3b5998;
+            color: #fff;
+            font-size: 1rem;
+            padding: 1rem;
+            flex: 1;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem auto;
+            height: 50px;
+
+        }
+
+        .facebook-button:hover {
+            background-color: #2d4373;
+        }
+
+        .button-icon {
+            margin-right: 1rem;
+        }
+
+        .button-icon img {
+            height: 1.2rem;
+        }
+
+        .forgot a {
+            color: #2d4373;
+            text-decoration: underline blue;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <!--    Navbar -->
+    <!-- <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container">
+ 
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link logged-out" href="#" data-bs-toggle="modal" data-bs-target="#signinModal">Signin</a>
+          <a class="nav-link logged-out" href="#" data-bs-toggle="modal" data-bs-target="#signupModal">Signup</a>
+           <a class="nav-link logged-in" href="#" id="logout">Logout</a> 
+        </div>
+      </div>
+
+
+    </div>
+  </nav>   -->
+
+
+    <!-- ##### Inicio de Header  ##### -->
+    <header class="header-area">
+
+        <!-- Inicio de Menu -->
+        <div class="academy-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="academyNav">
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+                        <div class="classy-menu">
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+
+                                    <li><a href="#sobre_nosotros">Sobre nosotros</a></li>
+                                    <li><a href="#plantLink">PlantLink</a></li>
+                                    <li><a href="#plagas">Plagas</a></li>
+                                    <li><a href="#contacto">Contacto</a></li>
+                                    <li><a class="nav-link logged-out" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#signinModal">Ingresar</a></li>
+                                    <li><a class="nav-link logged-out" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#signupModal">Registrarse</a></li>
+                                    <li> <a class="nav-link logged-in" href="#" id="logout">Logout</a> </li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Numero de telefono -->
+                        <div class="calling-info">
+                            <div class="call-center">
+                                <a href="tel:+522411980152"><i class="icon-telephone-2"></i> <span>(+52) 241 198 01
+                                        52</span></a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Fin de Menu ##### -->
+
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <ul class="list-group posts">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content ">
+
+
+                <div class="modal-header">
+                    <div class="title-wrapper">
+                        <h3>Registrate</h3>
+                        <p>Para mayor seguridad, regístrate con Google o Facebook. Aunque implementamos medidas de
+                            seguridad, PlantLink no se hace responsable de posibles ataques informáticos.</p>
+
+                    </div>
+                    <div class="logo-wrapper">
+                        <img src="public/index_estilos/img/core-img/Logo1.png" width="100%">
+
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+
+
+                <div class="modal-body ">
+                    <form id="signup-form">
+
+                        <label for="email"><b>Correo:</label>
+                        <input type="text" id="signup-email" class="form-control mb-3" placeholder="tu-email@gmail.com"
+                            required>
+
+                        <label for="password">Contraseña:</label></b>
+                        <input type="password" id="signup-password" class="form-control mb-3"
+                            placeholder="tu-contraseña" required>
+
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script>
+      // Configura Firebase
+      const firebaseConfig2 = {
+        apiKey: "AIzaSyCG-8m86VO_aB9kJPkI4xIaa8SMGCYHTCg",
+  authDomain: "dbsensors.firebaseapp.com",
+  databaseURL: "https://dbsensors-default-rtdb.firebaseio.com",
+  projectId: "dbsensors",
+  storageBucket: "dbsensors.appspot.com",
+  messagingSenderId: "1013519019759",
+  appId: "1:1013519019759:web:75e854d8032128304e751a",
+  measurementId: "G-YD2HFMLCKP"
+      };
+      firebase.initializeApp(firebaseConfig2);
+
+      // Define la función resetPassword
+      const resetPassword = (email) => {
+        firebase.auth().sendPasswordResetEmail(email)
+          .then(() => {
+            // El correo electrónico para restablecer la contraseña se ha enviado correctamente
+            console.log("El correo electrónico para restablecer la contraseña se ha enviado correctamente.");
+            // Muestra un mensaje al usuario indicando que se ha enviado un correo electrónico para restablecer la contraseña
+            document.getElementById("mensaje").textContent = "Se ha enviado un correo electrónico para restablecer la contraseña a la dirección " + email + ".";
+            document.getElementById("mensaje").style.color = "green";
+          })
+          .catch((error) => {
+            // Ha ocurrido un error al enviar el correo electrónico para restablecer la contraseña
+            console.error("Ha ocurrido un error al enviar el correo electrónico para restablecer la contraseña:", error);
+            // Muestra un mensaje al usuario indicando que ha ocurrido un error al enviar el correo electrónico para restablecer la contraseña
+            document.getElementById("mensaje").textContent = "Ha ocurrido un error al enviar el correo electrónico para restablecer la contraseña. Por favor, comprueba que la dirección de correo electrónico es válida e inténtalo de nuevo.";
+            document.getElementById("mensaje").style.color = "red";
+          });
+      };
+    </script>
+
+
+    <div class="modal fade" id="forgot_password" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content ">
+
+
+                <div class="modal-header">
+                    <div class="title-wrapper">
+                        <h3>Restablecer contraseña</h3>
+                        <p>Introduce la dirección de correo electrónico asociada a tu cuenta y te enviaremos un correo electrónico para que puedas restablecer tu contraseña.</p>
+
+                    </div>
+                    <div class="logo-wrapper">
+                        <img src="public/index_estilos/img/core-img/Logo1.png" width="100%">
+
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+
+
+                <div class="modal-body ">
+                    <form id="signup-form">
+
+                        <label for="email"><b>Correo:</label>
+                        <input type="email" id="email" class="form-control mb-3" placeholder="tu-email@gmail.com"
+                            required>
+                        <button type="submit" class="btn btn-danger">Restablecer contraseña</button>
+                    </form>
+                    <form  onsubmit="event.preventDefault(); resetPassword(document.getElementById('email').value);">
+                             
+                      </form>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+ -->
+
+
+
+    <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalSignin"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="title-wrapper">
+                        <h3>Iniciar sesión</h3>
+                        <p> <b>¡Bienvenido a PlantLink!</b> Recuerda no compartir tu contraseña y cerrar sesión al
+                            terminar. La seguridad de tu cuenta es importante para nosotros.</p>
+
+                    </div>
+                    <div class="logo-wrapper">
+                        <img src="public/index_estilos/img/core-img/Logo1.png" width="100%">
+
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="login-form">
+                        <label for="email"><b>Correo:</b></label>
+                        <input type="text" id="login-email" class="form-control mb-3" placeholder="tu-email@gmail.com"
+                            required>
+                        <label for="password"><b>Contraseña:</b></label>
+                        <input type="password" id="login-password" class="form-control mb-3" placeholder="tu-contraseña"
+                            required>
+
+                        <button type="submit" class="btn btn-success w-100 mb-4">Ingresar</button>
+
+                        <div class="google-signin" style="margin-top: 0px;">
+
+                            <button type="button" id="googleLogin" class="google-signin-button">
+                                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                                    alt="Google Logo" />
+                                <span>Acceder con Google</span>
+                            </button>
+
+
+                            <button type="button" class="login-button facebook-button" id="facebookLogin">
+                                <span class="button-icon">
+                                    <img src="public/index_estilos/img/core-img/facebook-770688_1280.webp"
+                                        alt="Facebook Logo" />
+                                </span>
+                                Acceder con Facebook
+                            </button>
+
+                        </div>
+                        <!-- <button type="button" class="btn btn-dark" id="githubLogin">Github</button>  
+     <a href="mailto:plantlinkced@gmail.com">-->       
+                            <a class="nav-link logged-out" href="#" data-bs-toggle="modal" data-bs-target="#forgot_password" style="color: #084B8A">¿Olvidaste tu contraseña?</a>
+                </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Toastify js -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="./main.js" type="module"></script>
+
+
+
+
+    <!-- ##### Inicio de Carrusel ##### -->
+    <section class="hero-area">
+        <div class="hero-slides owl-carousel">
+            <!-- Imagen 1 -->
+            <div class="single-hero-slide bg-img" style="background-image: url(public/index_estilos/img/bg6.png);">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <div class="hero-slides-content">
+                                <h4 data-animation="fadeInUp" data-delay="100ms">Una manera inteligente de eliminar
+                                    plagas</h4>
+                                <h2 data-animation="fadeInUp" data-delay="400ms">Bienvenido a <br>PlantLink</h2>
+                                <a href="mailto:plantlinkced@gmail.com" class="btn academy-btn"
+                                    data-animation="fadeInUp" data-delay="700ms">Contactanos</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Imagen 2 -->
+            <div class="single-hero-slide bg-img"
+                style="background-image: url(public/index_estilos/img/bg-img/bg3.png);">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <div class="hero-slides-content">
+                                <h4 data-animation="fadeInUp" data-delay="100ms">Una manera inteligente de eliminar
+                                    plagas</h4>
+                                <h2 data-animation="fadeInUp" data-delay="400ms">Bienvenido a <br>PlantLink</h2>
+                                <a href="mailto:plantlinkced@gmail.com" class="btn academy-btn"
+                                    data-animation="fadeInUp" data-delay="700ms">Contactanos</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Fin de carrusel ##### -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script>
+      // Configura Firebase
+      const firebaseConfig2 = {
+        apiKey: "AIzaSyCG-8m86VO_aB9kJPkI4xIaa8SMGCYHTCg",
+  authDomain: "dbsensors.firebaseapp.com",
+  databaseURL: "https://dbsensors-default-rtdb.firebaseio.com",
+  projectId: "dbsensors",
+  storageBucket: "dbsensors.appspot.com",
+  messagingSenderId: "1013519019759",
+  appId: "1:1013519019759:web:75e854d8032128304e751a",
+  measurementId: "G-YD2HFMLCKP"
+      };
+      firebase.initializeApp(firebaseConfig2);
+
+      // Define la función resetPassword
+      const resetPassword = (email2) => {
+        firebase.auth().sendPasswordResetEmail(email2)
+          .then(() => {
+            // El correo electrónico para restablecer la contraseña se ha enviado correctamente
+            console.log("El correo electrónico para restablecer la contraseña se ha enviado correctamente.");
+            // Muestra un mensaje al usuario indicando que se ha enviado un correo electrónico para restablecer la contraseña
+            document.getElementById("mensaje").textContent = "Se ha enviado un correo electrónico para restablecer la contraseña  ";
+            document.getElementById("mensaje").style.color = "green";
+          })
+          .catch((error) => {
+            // Ha ocurrido un error al enviar el correo electrónico para restablecer la contraseña
+            console.error("Ha ocurrido un error al enviar el correo electrónico para restablecer la contraseña:", error);
+            // Muestra un mensaje al usuario indicando que ha ocurrido un error al enviar el correo electrónico para restablecer la contraseña
+            document.getElementById("mensaje").textContent = "Ha ocurrido un error al enviar el correo electrónico para restablecer la contraseña. Por favor, comprueba que la dirección de correo electrónico es válida e inténtalo de nuevo.";
+            document.getElementById("mensaje").style.color = "red";
+          });
+      };
+    </script>
+
+    
+
+
+
+
+
+    <div class="modal fade" id="forgot_password" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="title-wrapper">
+                    <h3>Restablecer contraseña</h3>
+                    <p>Introduce la dirección de correo electrónico asociada a tu cuenta y te enviaremos un correo electrónico para que puedas restablecer tu contraseña.</p>
+                </div>
+                <div class="logo-wrapper">
+                    <img src="public/index_estilos/img/core-img/Logo1.png" width="100%">
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form onsubmit="event.preventDefault(); resetPassword(document.getElementById('email2').value);">
+                    <label for="email2"><b>Correo:</label>
+                    <input type="email2" id="email2" class="form-control mb-3" placeholder="tu-email@gmail.com"
+                        required>
+                    <button type="submit" class="btn btn-danger">Restablecer contraseña</button>
+                </form>
+                <div id="mensaje"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+    <!-- ##### Sobre nosotros##### -->
+    <section class="hero-area">
+        <div id="about">
+            <div class="fh5co-heading text-center">
+                <br><br><br>
+                <h3 id="sobre_nosotros" class="fh5co-heading-title">Sobre nosotros <span class="border"></span></h3>
+                <br>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 ">
+
+                        <div class="about-img"><br><img src="public/index_estilos/img/core-img/PlantLink.png"
+                                class="img-responsive" alt=""></div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-6">
+                        <div class="about-text">
+                            <br>
+                            <h3>Misión</h3>
+                            <hr>
+                            <p>Ofrecer dispositivos inteligentes cuya finalidad sea detectar amenazas que interfieran con la vida útil de los cultivos.
+                            </p>
+                            <h3>Visión</h3>
+                            <hr>
+                            <p>Ser una empresa dedicada al control de plagas a través de técnicas innovadoras de alta calidad, tecnología y costos competitivos.
+                            </p>
+                            <h3>Objetivo</h3>
+                            <p>Ayudar a tener un monitoreo preciso sobre la calidad del aire, la tierra y las posibles plagas que puedan acercarse a los cultivos.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ##### PlantLink##### -->
+    <section class="hero-area" id="plantLink">
+        <div id="about">
+            <div class="fh5co-heading text-center">
+                <br><br><br>
+                <h3 class="fh5co-heading-title">PlantLink <span class="border"></span></h3>
+                <br>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 ">
+                        <div class="about-img"><br><img src="public/index_estilos/img/core-img/Plantilla.png"
+                                class="img-responsive" alt=""></div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-6">
+                        <div class="about-text">
+                            <br>
+                            <h3>Centinela v1.0</h3>
+                            <hr>
+                            <!-- <p>
+                                ¿Preocupado por el bienestar de tus cultivos? ¡No te preocupes más! Con Centinela v1.0, podrás tener un control total sobre las condiciones ambientales de tus plantas.
+                            </p>
+                            <br> -->
+                            <p>Nuestro dispositivo IoT de última generación, te permite monitorear en tiempo real la humedad ambiental, la temperatura, la humedad del suelo y el nivel de CO2. Además, con su detector de intensidad de luz y su sistema de alerta acústico, Centinela v1.0 te avisará en cuanto detecte la presencia de insectos dañinos.</p>
+                            <br>
+                            <p>¡No dejes que tus plantas sufran más! Con Centinela v1.0, tendrás todo lo que necesitas para garantizar el crecimiento y desarrollo óptimo de tus cultivos. ¡Pídelo ahora mismo!</p>
+                            <!-- <center><a href="mailto:plantlinkced@gmail.com" class="btn academy-btn"
+                                    data-animation="fadeInUp" data-delay="700ms">Contactanos</a></center> -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <br> <br> <br>
+    <div class="container" id="explore">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading text-center mx-auto wow fadeInUp" data-wow-delay="300ms">
+                    <h3>Registrate en nuestra plataforma</h3>
+                </div>
+            </div>
+        </div>
+
+        <section class="row heroimg breath">
+            <div class="col-md-12 text-center">
+                <img src="public/index_estilos/img/core-img/login333.png" alt="flat-mockup-template">
+            </div>
+        </section>
+    </div>
+
+    <br><br><br>
+    <div class="section-heading text-center mx-auto wow fadeInUp" data-wow-delay="300ms">
+        <h3>Descarga nuestra aplicación móvil</h3>
+    </div>
+    <!-- ##### Inicio app ##### -->
+    <section class="showcase">
+        <div class="showcase-wrap">
+            <div class="texture-overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="device wp3">
+                            <div class="device-content">
+                                <div class="showcase-slider">
+                                    <ul class="slides" id="showcaseSlider">
+                                        <li>
+                                            <img src="public/index_estilos/img/movil/screen1.jpg"
+                                                alt="Device Content Image">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <p><b>
+                                <font color="#000000"> ¡Descubre la revolucionaria aplicación móvil que cambiará la
+                                    forma en que cuidas tus plantas!
+                            </b> Con nuestra aplicación,
+                            podrás monitorear en tiempo real la humedad ambiental, temperatura, humedad de la tierra y
+                            detectar el nivel de CO2
+                            en tu ambiente de cultivo. <br><br> <b>¡Pero eso no es todo!</b> Nuestra aplicación móvil
+                            también está diseñada para detectar la presencia de plagas cercanas a tus plantas, y te
+                            notificará inmediatamente en tu dispositivo móvil. De esta manera, podrás tomar medidas
+                            preventivas a tiempo y evitar posibles daños en tus plantas.
+                        </p>
+
+
+                        </p>
+                        <blockquote class="team-quote">
+                            <div class="avatar"><img src="public/index_estilos/img/movil/avatar.png" alt="User Avatar">
+                            </div>
+                            <p><b>
+                                    <font color="#000000">"Acabar con el medio ambiente es la forma más rapida de acabar
+                                        con la sociedad" - Peter </font>
+                                </b></p>
+
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ##### Final app ##### -->
+    <br><br>
+    <br><br>
+
+    <script src="https://kit.fontawesome.com/27f43a6674.js" crossorigin="anonymous"></script>
+    <!-- ##### SENSORES ##### -->
+    <div id="servicios">
+        <div id="fh5co-page">
+            <main id="fh5co-main" role="main">
+                <div class="container pb-lg">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="fh5co-heading text-center">
+                                <br><br><br>
+                                <h3 class="fh5co-heading-title">Sensores <span class="border"></span></h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="fh5co-main-service">
+                                <a href="mailto:plantlinkced@gmail.com" class="fh5co-block-links text-center">
+                                    <div class="icon-circle">
+                                        <i class="fa-solid fa-cloud"></i>
+                                    </div>
+                                    <h2>Humedad ambiental </h2>
+                                    <p>Con su sensor capacitivo de humedad y su termistor, el DHT11 es capaz de medir de
+                                        manera precisa
+                                        la temperatura y humedad relativa del aire que lo rodea.</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="fh5co-main-service">
+                                <a href="mailto:plantlinkced@gmail.com" class="fh5co-block-links text-center">
+                                    <div class="icon-circle">
+                                        <i class="fa-sharp fa-solid fa-droplet"></i>
+                                    </div>
+                                    <h2>Humedad de la tierra</h2>
+                                    <p>Con su capacidad para detectar la presencia de agua en la tierra, el FC-28
+                                        utiliza la conductividad del
+                                        agua para proporcionar información precisa sobre la humedad del suelo en el que
+                                        crecen tus plantas.
+                                    </p>
+
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="fh5co-main-service">
+                                <a href="mailto:plantlinkced@gmail.com" class="fh5co-block-links text-center">
+                                    <div class="icon-circle">
+                                        <i class="fa-solid fa-temperature-three-quarters"></i>
+                                    </div>
+                                    <h2>Temperatura</h2>
+                                    <p>Con sus sensores resistivos, el DH11 es capaz de medir la humedad relativa en un
+                                        rango amplio,
+                                        desde 20% hasta 90%. Además, puede medir la temperatura en un rango de 0ºC a
+                                        50ºC, proporcionando
+                                        información precisa.</p>
+
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="fh5co-main-service">
+                                <a href="mailto:plantlinkced@gmail.com" class="fh5co-block-links text-center">
+                                    <div class="icon-circle">
+                                        <i class="fa-solid fa-wind"></i>
+                                    </div>
+                                    <h2>CO2</h2>
+                                    <p>El MQ-7 es un sensor de detección de monóxido de carbono que te permite medir la
+                                        concentración de este gas
+                                        en el aire de tu entorno de cultivo. Al detectar la presencia de CO en el
+                                        ambiente, podrás tomar medidas
+                                        preventivas para proteger a tus plantas y asegurarte de que crezcan de manera
+                                        saludable.</p>
+
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="fh5co-main-service">
+                                <a href="mailto:plantlinkced@gmail.com" class="fh5co-block-links text-center">
+                                    <div class="icon-circle">
+                                        <i class="fa-solid fa-bug"></i>
+                                    </div>
+                                    <h2>Sensor ultrasonico</h2>
+                                    <p>El sensor HC-SR04 consiste en emitir un sonido ultrasónico por uno de sus
+                                        transductores, y esperar que el sonido rebote de algún objeto presente, el eco
+                                        es captador por el segundo transductor. La distancia es proporcional al tiempo
+                                        que demora en llegar el eco.</p>
+
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="fh5co-main-service">
+                                <a href="mailto:plantlinkced@gmail.com" class="fh5co-block-links text-center">
+                                    <div class="icon-circle">
+                                        <i class="fa-solid fa-sun"></i>
+                                    </div>
+                                    <h2>Sensor de luz</h2>
+                                    <p>Más allá de conocer el grado de luz ambiental, este sensor te permite determinar
+                                        si una planta está recibiendo la cantidad adecuada de luz para su crecimiento
+                                        y si necesita ser movida a un lugar con mayor o menor iluminación.
+
+                                    </p>
+
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!-- ##### Fin de servicios ##### -->
+
+
+
+    <!-- ##### Inicio computadora ##### -->
+
+    <!-- ##### Final computadora ##### -->
+
+
+    <!-- ##### Inicio de Cursos ##### -->
+    <div class="top-popular-courses-area section-padding-100-70" id="plagas">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-center mx-auto wow fadeInUp" data-wow-delay="300ms">
+                        <h3>Las plagas más comunes</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Top Popular Course -->
+                <div class="col-12 col-lg-6">
+                    <div class="single-top-popular-course d-flex align-items-center flex-wrap mb-30 wow fadeInUp"
+                        data-wow-delay="400ms">
+                        <div class="popular-course-content">
+                            <h5><b>Cochinilla</b></h5>
+
+                            <p> Se trata de una plaga muy corriente, que ataca a todo tipo de plantas ornamentales
+                                (desde orquídeas, como en la foto, y cóleos hasta chamaedoreas y arecas, ) y árboles
+                                frutales, especialmente los cítricos y olivos. </p>
+
+                        </div>
+                        <div class="popular-course-thumb bg-img"
+                            style="background-image: url(public/index_estilos/img/Plagas/cochinilla3.png);">
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Single Top Popular Course -->
+                <div class="col-12 col-lg-6">
+                    <div class="single-top-popular-course d-flex align-items-center flex-wrap mb-30 wow fadeInUp"
+                        data-wow-delay="500ms">
+                        <div class="popular-course-content">
+                            <h5><b>Pulgón</b></h5>
+
+                            <p>
+                                Los pulgones se asientan en las partes aéreas de las plantas, especialmente en los
+                                brotes tiernos y capullos. A veces las hojas se ven enrolladas y pegajosas, muchas
+                                amarillean. </p>
+
+                        </div>
+                        <div class="popular-course-thumb bg-img"
+                            style="background-image: url(public/index_estilos/img/Plagas/pulgon.png);">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Top Popular Course -->
+
+
+                <div class="col-12 col-lg-6">
+                    <div class="single-top-popular-course d-flex align-items-center flex-wrap mb-30 wow fadeInUp"
+                        data-wow-delay="700ms">
+                        <div class="popular-course-content">
+                            <h5><b>Araña roja</b></h5>
+
+
+                            <p> Las hojas se llenan de motas amarillas o pardas y palidecen; después se abarquillan, se
+                                secan y caen. A veces se aprecian telarañas; las arañas son casi imperceptibles.</p>
+
+
+                        </div>
+                        <div class="popular-course-thumb bg-img"
+                            style="background-image: url(public/index_estilos/img/Plagas/arañar.png);"></div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="single-top-popular-course d-flex align-items-center flex-wrap mb-30 wow fadeInUp"
+                        data-wow-delay="700ms">
+                        <div class="popular-course-content">
+                            <h5><b>Caracoles y babosas</b></h5>
+
+                            <p>Las babosas y caracoles Producen agujeros en la parte aérea de las plantas, especialmente
+                                en las hojas y los brotes, dejando un característico rastro de mucosa. </p>
+
+
+                        </div>
+                        <div class="popular-course-thumb bg-img"
+                            style="background-image: url(public/index_estilos/img/Plagas/caracol.png);"></div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="single-top-popular-course d-flex align-items-center flex-wrap mb-30 wow fadeInUp"
+                        data-wow-delay="700ms">
+                        <div class="popular-course-content">
+                            <h5><b>Oídio</b></h5>
+
+                            <p>Es una enfermedad fúngica. El hongo más común: Uncinula necator.Las hojas se cubren de un
+                                polvo blancuzco. En un ataque fuerte, amarillean y se secan.</p>
+
+
+                        </div>
+                        <div class="popular-course-thumb bg-img"
+                            style="background-image: url(public/index_estilos/img/Plagas/oidiu.png);"></div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="single-top-popular-course d-flex align-items-center flex-wrap mb-30 wow fadeInUp"
+                        data-wow-delay="700ms">
+                        <div class="popular-course-content">
+                            <h5><b>Míldiu</b></h5>
+
+
+                            <p>Enfermedad producida por una especie de hongo (protistas) causa manchas verde claro en el
+                                haz de las hojas y pelusilla polvorienta en el envés; luego amarillean, se vuelven
+                                marrones, se secan y caen.</p>
+
+
+                        </div>
+                        <div class="popular-course-thumb bg-img"
+                            style="background-image: url(public/index_estilos/img/Plagas/mildiu.png);"></div>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="fh5co-heading text-center">
+        <h3 class="fh5co-heading-title">Comentarios <span class="border"></span></h3>
+    </div>
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v16.0"
+        nonce="ZzaSjp6F"></script>
+
+    <div class="fb-comments" data-href="http://localhost:1000/" data-width="100%" data-numposts="10"></div>
+
+    <!-- ##### Top Popular Courses Area End ##### -->
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+    <!-- ##### Top Popular Multimedias Area End ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="public/index_estilos/js/jquery/jquery-2.2.4.min.js"></script>
+
+    <!-- Popper js -->
+    <script src="public/index_estilos/js/bootstrap/popper.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="public/index_estilos/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="public/index_estilos/js/active.js"></script>
+    <script src="public/index_estilos/js/jquery.cbpQTRotator.min.js"></script>
+    <!-- Movil -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="public/index_estilos/js/waypoints.min_movil.js"></script>
+    <script src="public/index_estilos/js/min/scripts-min_movil.js"></script>
+
+
+    <footer>
+        <div class="contenedor" id="contacto">
+            <section class="contacto">
+                <div class="fh5co-heading text-center">
+                    <h3 class="fh5co-heading-title">Contacto <span class="border"></span></h3>
+                </div>
+
+                <!-- <form class="formulario" action="/contact" id="miFormulario" method="POST"> -->
+              <!-- <form class="formulario" action="https://formspree.io/f/mqkodggg" method="POST">
+                    <input type="name" placeholder="Nombre" name="name" id="name" required>
+                    <input type="email" placeholder="Correo" name="email" id="email" required>
+                    <input type="text" placeholder="Número de teléfono" name="phone" id="phone" required>
+                    <textarea name="message" id="message" placeholder="¿Qué desea solicitar?:"></textarea>
+                    <input class="boton" type="submit" value="Enviar">
+                </form> -->
+
+                <form class="formulario" action="https://formspree.io/f/mqkodggg" method="POST">
+                    <input type="name" placeholder="Nombre" name="name" id="name" required>
+                    <input type="email" placeholder="Correo" name="email" id="email" required>
+                    <input type="text" placeholder="Número de teléfono" name="phone" id="phone" required>
+                    <textarea name="message" id="message" placeholder="¿Qué desea solicitar?:"></textarea>
+                    <input class="boton" type="submit" value="Enviar">
+                  </form>
+
+                  <script>
+                    // Inicializa Firebase
+            var firebaseConfig = {
+              apiKey: "AIzaSyCG-8m86VO_aB9kJPkI4xIaa8SMGCYHTCg",
+              authDomain: "dbsensors.firebaseapp.com",
+              databaseURL: "https://dbsensors-default-rtdb.firebaseio.com",
+              projectId: "dbsensors",
+              storageBucket: "dbsensors.appspot.com",
+              messagingSenderId: "1013519019759",
+              appId: "1:1013519019759:web:75e854d8032128304e751a",
+              measurementId: "G-YD2HFMLCKP"
+            };
+            firebase.initializeApp(firebaseConfig);
+        
+            // Inicializa Firestore
+            var db = firebase.firestore();
+
+            // Agrega los datos del formulario a la colección de contactos en Firestore
+            const form = document.querySelector('.formulario');
+            form.addEventListener('submit', (e) => {
+              e.preventDefault();
+              db.collection('contactos').add({
+                name: form.name.value,
+                email: form.email.value,
+                phone: form.phone.value,
+                message: form.message.value
+              })
+              .then(() => {
+                alert('¡Gracias por contactarnos!');
+                form.reset();
+              })
+              .catch((error) => {
+                console.error('Error al agregar los datos a Firestore: ', error);
+                alert('Ocurrió un error al enviar tu mensaje. Por favor, intenta de nuevo más tarde.');
+              });
+            });
+          </script>
+            </section>
+        </div>
+        <script src="./app/contacto.js"></script>
+        <section class="redes-sociales">
+            <div class="contenedor">
+                <a class="facebook" href="https://www.facebook.com/profile.php?id=100089869691089" target="_blank"><i
+                        class="fa fa-facebook"></i></a>
+                <a class="instagram" href="https://www.instagram.com/plantlinkced/?next=%2F" target="_blank"><i
+                        class="fa fa-instagram"></i></a>
+            </div>
+        </section>
+    </footer>
+</body>
+</html>

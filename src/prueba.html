@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Restablecer contraseña</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script>
+      // Configura Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyCG-8m86VO_aB9kJPkI4xIaa8SMGCYHTCg",
+  authDomain: "dbsensors.firebaseapp.com",
+  databaseURL: "https://dbsensors-default-rtdb.firebaseio.com",
+  projectId: "dbsensors",
+  storageBucket: "dbsensors.appspot.com",
+  messagingSenderId: "1013519019759",
+  appId: "1:1013519019759:web:75e854d8032128304e751a",
+  measurementId: "G-YD2HFMLCKP"
+      };
+      firebase.initializeApp(firebaseConfig);
+
+      // Define la función resetPassword
+      const resetPassword = (email) => {
+        firebase.auth().sendPasswordResetEmail(email)
+          .then(() => {
+            // El correo electrónico para restablecer la contraseña se ha enviado correctamente
+            console.log("El correo electrónico para restablecer la contraseña se ha enviado correctamente.");
+            // Muestra un mensaje al usuario indicando que se ha enviado un correo electrónico para restablecer la contraseña
+            document.getElementById("mensaje").textContent = "Se ha enviado un correo electrónico para restablecer la contraseña a la dirección " + email + ".";
+            document.getElementById("mensaje").style.color = "green";
+          })
+          .catch((error) => {
+            // Ha ocurrido un error al enviar el correo electrónico para restablecer la contraseña
+            console.error("Ha ocurrido un error al enviar el correo electrónico para restablecer la contraseña:", error);
+            // Muestra un mensaje al usuario indicando que ha ocurrido un error al enviar el correo electrónico para restablecer la contraseña
+            document.getElementById("mensaje").textContent = "Ha ocurrido un error al enviar el correo electrónico para restablecer la contraseña. Por favor, comprueba que la dirección de correo electrónico es válida e inténtalo de nuevo.";
+            document.getElementById("mensaje").style.color = "red";
+          });
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Restablecer contraseña</h1>
+    <p>Introduce la dirección de correo electrónico asociada a tu cuenta y te enviaremos un correo electrónico para que puedas restablecer tu contraseña:</p>
+    <form onsubmit="event.preventDefault(); resetPassword(document.getElementById('email').value);">
+      <input type="email" id="email" placeholder="Correo electrónico" required>
+      <button type="submit">Restablecer contraseña</button>
+    </form>
+    <div id="mensaje"></div>
+  </body>
+</html>

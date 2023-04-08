@@ -1,0 +1,44 @@
+
+
+/* ==========================================================================
+Showcase
+========================================================================== */
+.showcase {
+    background: url('../img/m2.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.device {
+    position: absolute;
+    top: -60px;
+    left: 20%;
+    min-height: 676px;
+    width: 359px;
+    background: url('../img/movil/iphone-skeleton.png') no-repeat center center;
+}
+.device-content {
+    position: absolute;
+    top: 115px;
+    left: 56px;
+    width: 247px;
+    height: 445px;
+    background: rgba(0, 0, 0, 0.3);
+}
+.device-content img {
+    width: 247px;
+    height: 445px;
+}
+.showcase-wrap {
+    position: relative;
+    padding: 100px 0;
+    min-height: 600px;
+}
+.showcase-slider ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.showcase-slider .flickity-page-dots {
+    bottom: 20px;
+}
+

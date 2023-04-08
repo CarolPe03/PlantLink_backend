@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlantLink-Sensores </title>
+  <!-- Imagen pestaña -->
+  <link rel="icon" href="public/index_estilos/img/core-img/Logo_sin.png">
+  <link rel="stylesheet" href="index_estilos/css/themify-icons2.css">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" type="text/css" href="./public/sensores/style.css">
+</head>
+<body>
+<script src="./app/volver.js"> </script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi4Ixtx"
+crossorigin="anonymous"></script>
+<script type="module">
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-analytics.js";
+import { getDatabase, ref, onValue, set, child, remove, get } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyCG-8m86VO_aB9kJPkI4xIaa8SMGCYHTCg",
+  authDomain: "dbsensors.firebaseapp.com",
+  databaseURL: "https://dbsensors-default-rtdb.firebaseio.com",
+  projectId: "dbsensors",
+  storageBucket: "dbsensors.appspot.com",
+  messagingSenderId: "1013519019759",
+  appId: "1:1013519019759:web:75e854d8032128304e751a",
+  measurementId: "G-YD2HFMLCKP"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getDatabase();
+
+function GetAllDataRealtime(){
+  const temperatura = ref(db,"Centinel01/Sensores/Temperatura");
+  const co2 = ref(db,"Centinel01/Sensores/CO2"); 
+  const gas = ref(db,"Centinel01/Sensores/Gas"); 
+  const humedad = ref(db,"Centinel01/Sensores/Humedad");
+  const smoke = ref(db,"Centinel01/Sensores/Smoke");
+
+  onValue(temperatura, (snapshot) => {
+  var Sensores = [];
+  snapshot.forEach((childSnapshot) => {
+    Sensores.push(childSnapshot.val());
+  });
+  // Asignar los valores a los elementos HTML
+  const temperatura_span = document.getElementById("temperatura_span");
+  temperatura_span.innerHTML = Sensores[1];
+});
+onValue(humedad,(snapshot)=>{
+  var Sensores = [];
+  snapshot.forEach(childSnapshot => {
+      Sensores.push(childSnapshot.val());
+  });
+
+  const humedad_span = document.getElementById("humedad_span");
+  humedad_span.innerHTML = Sensores[1];
+});
+
+//Humedad del suelo
+
+ onValue(co2,(snapshot)=>{
+    var Sensores = [];
+    snapshot.forEach(childSnapshot => {
+        Sensores.push(childSnapshot.val());
+    });
+     // Asignar los valores a los elementos HTML
+  document.getElementById("hora_co2").innerHTML = "Hora: " + Sensores[0];
+  const co2_span = document.getElementById("co2_span");
+  co2_span.innerHTML = Sensores[1];
+  });
+  onValue(gas,(snapshot)=>{
+    var Sensores = [];
+    snapshot.forEach(childSnapshot => {
+        Sensores.push(childSnapshot.val());
+    });
+  const gas_span = document.getElementById("gas_span");
+  gas_span.innerHTML = Sensores[1];
+  });
+  onValue(smoke,(snapshot)=>{
+    var Sensores = [];
+    snapshot.forEach(childSnapshot => {
+        Sensores.push(childSnapshot.val());
+    });
+  const smoke_span = document.getElementById("smoke_span");
+  smoke_span.innerHTML = Sensores[1];
+  });
+  //Luminosidad
+}
+window.onload = GetAllDataRealtime;
+const btnVolver = document.getElementById('btnVolver');
+// Maneja el evento click del botón de cerrar sesión
+btnVolver.addEventListener('click', e => {
+    window.location.href = 'perfil.html';
+});
+  </script>
+
+<div class="topnav">
+    <div class="title-container">
+      <h1>Sensores</h1>
+    </div>
+    <div class="image-container">
+      <img src="./public/index_estilos/img/core-img/Logo_v1.png" height="80">
+    </div>
+  </div>
+<br><br>
+<h2 id="hora_co2"></h2>
+<!-- CONTENT (SENSOR READINGS) -->
+<div class="" id="" style="display: flex;">
+<div class="cards">
+<!-- TEMPERATURE -->
+<div class="card">
+ <b> <p><i class="fas fa-thermometer-half" style="color:#e72b3b;"></i> TEMPERATURA</p> </b>
+  <p><span class="reading"><span id="temperatura_span"></span>°C</span></p>
+</div>
+<!-- HUMIDITY -->
+<div class="card">
+    <b><p><i class="fas fa-tint" style="color:#00add6;"></i> HUMEDAD</p></b>
+  <p><span class="reading"><span id="humedad_span"></span>%</span></p>
+</div>
+<!-- MOISTURE -->
+<div class="card"> 
+    <b><p><i class="fas fa-tint" style="color:#5a290d;"></i> HUMEDAD DEL SUELO</p></b>
+</div>
+<!-- CO2 -->
+<div class="card">
+    <b><p><i class="fas fa-cloud" style="color:#039dc0;"></i> CO2</p></b>
+  <p><span class="reading"><span id="co2_span"></span>ppm</span></p>
+</div>
+<!-- Gas -->
+<div class="card">
+    <b><p><i class="fas fa-gas-pump" style="color:#660c0c;"></i> GAS</p></b>
+  <p><span class="reading"><span id="gas_span"></span>ppm</span></p>
+</div>
+<!-- Smoke -->
+<div class="card">
+    <b><p> <i class="fas  fa-wind" style="color: #706e6e;"></i> HUMO</p> </b>
+  <p><span class="reading"><span id="smoke_span"></span>ppm</span></p>
+</div>
+<!-- LIGHT -->
+<div class="card">
+    <b><p><i class="fas fa-lightbulb" style="color:#f7fb06;"></i> LUMINOSIDAD</p></b>
+</div>
+</div>
+</div>
+<div class="button-container">
+    <button id="btnVolver" class="btn btn-danger" href="./perfil.html">Volver</button>
+</div>
+</body>
+</html>
+
