@@ -21,6 +21,13 @@
     <link rel="stylesheet" href="public/index_estilos/style.css">
     <link rel="stylesheet" href="public/index_estilos/css/styles_movil.css">
     <link rel="stylesheet" href="public/index_estilos/css/animate.css">
+     <!-- SweetAlert2 -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.1.4/sweetalert2.min.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.1.4/sweetalert2.min.js"></script>
+      <!-- Firebase -->
+     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+ 
     <style>
         .modal-header {
             display: flex;
@@ -66,7 +73,6 @@
 </div>
 <script type="module" src="./app/logout2.js"></script>
 <script type="module" src="./app/firebase.js"></script>
-
 
 <!-- ##### Inicio de Header  ##### -->
 <header class="header-area">
@@ -115,10 +121,7 @@
     </div>
 </div>
 
-
-
 <!-- Modal 1 -->
-
 <div class="modal fade bd-example-modal-lg" id="conectar1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -129,15 +132,12 @@
                      suelo y plagas, el sitio web y la aplicación móvil, usted acepta estos términos y condiciones. 
                      Si no está de acuerdo con estos términos, no use el dispositivo, el sitio web y la aplicación móvil.
                     </p>
-
             </div>
             <div class="logo-wrapper">
                 <img src="public/index_estilos/img/core-img/Logo1.png" width="100%">
-
             </div>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                 aria-label="Close"></button>
-            
         </div>
         <div class="modal-body">
             <h5>Propiedad intelectual</h5>
@@ -172,56 +172,6 @@
     </div>
   </div>
 </div>
-
-
-
-<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
-<script>
-  // Configura Firebase con tus credenciales
-  var firebaseConfig = {
-    apiKey: "AIzaSyCG-8m86VO_aB9kJPkI4xIaa8SMGCYHTCg",
-authDomain: "dbsensors.firebaseapp.com",
-databaseURL: "https://dbsensors-default-rtdb.firebaseio.com",
-projectId: "dbsensors",
-storageBucket: "dbsensors.appspot.com",
-messagingSenderId: "1013519019759",
-appId: "1:1013519019759:web:75e854d8032128304e751a",
-measurementId: "G-YD2HFMLCKP"
-  };
-  firebase.initializeApp(firebaseConfig);
-
-  // Función para autenticar el ID ingresado por el usuario
-  function autenticar() {
-    console.log("La función autenticar se está ejecutando");
-   const id = document.getElementById('id').value;
-    const idCollection = firebase.firestore().collection('id');
-    idCollection.doc(id).get()
-      .then((doc) => {
-        if (doc.exists) {
-             window.location.href = 'sensores.html';
-        } else {
-          // Si el documento no existe, significa que el ID es incorrecto
-          alert(`El ID ${id} NO es válido`);  
-        }
-      })
-      .catch((error) => {
-        // Maneja cualquier error que pueda ocurrir durante la búsqueda del documento
-        console.error(error);
-      });
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- Modal 2 -->
 <div class="modal fade" id="conectar2" tabindex="-1" role="dialog" aria-labelledby="exampleModalSignin"
@@ -272,7 +222,7 @@ aria-hidden="true">
     <div id="about">
         <div class="fh5co-heading text-center">
             <br><br><br>
-            <h3 id="sobre_nosotros" class="fh5co-heading-title">PlantLink <span class="border"></span></h3>
+            <h3 id="acerca" class="fh5co-heading-title">PlantLink <span class="border"></span></h3>
             <br>
         </div>
 
@@ -596,6 +546,44 @@ aria-hidden="true">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="public/index_estilos/js/waypoints.min_movil.js"></script>
 <script src="public/index_estilos/js/min/scripts-min_movil.js"></script>
+
+
+<script>
+    // Configura Firebase con tus credenciales
+    var firebaseConfig = {
+      apiKey: "AIzaSyCG-8m86VO_aB9kJPkI4xIaa8SMGCYHTCg",
+  authDomain: "dbsensors.firebaseapp.com",
+  databaseURL: "https://dbsensors-default-rtdb.firebaseio.com",
+  projectId: "dbsensors",
+  storageBucket: "dbsensors.appspot.com",
+  messagingSenderId: "1013519019759",
+  appId: "1:1013519019759:web:75e854d8032128304e751a",
+  measurementId: "G-YD2HFMLCKP"
+    };
+    firebase.initializeApp(firebaseConfig);
+  
+    // Función para autenticar el ID ingresado por el usuario
+    function autenticar() {
+      console.log("La función autenticar se está ejecutando");
+     const id = document.getElementById('id').value;
+      const idCollection = firebase.firestore().collection('id');
+      idCollection.doc(id).get()
+        .then((doc) => {
+          if (doc.exists) {
+               window.location.href = 'sensores.html';
+          } else {
+            // Si el documento no existe, significa que el ID es incorrecto
+          Swal.fire({
+          icon: 'error',
+          title: (`El ID ${id} NO es válido`),
+    }); 
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  </script>
 
 
 </html>

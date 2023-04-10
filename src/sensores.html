@@ -26,7 +26,7 @@ import { getDatabase, ref, onValue, set, child, remove, get } from "https://www.
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyCG-8m86VO_aB9kJPkI4xIaa8SMGCYHTCg",
+  apiKey: "AIzaSyCG-8m86VO_aB9kJPkI4xIaa8SMGCYHTCg",
   authDomain: "dbsensors.firebaseapp.com",
   databaseURL: "https://dbsensors-default-rtdb.firebaseio.com",
   projectId: "dbsensors",
@@ -47,6 +47,9 @@ function GetAllDataRealtime(){
   const gas = ref(db,"Centinel01/Sensores/Gas"); 
   const humedad = ref(db,"Centinel01/Sensores/Humedad");
   const smoke = ref(db,"Centinel01/Sensores/Smoke");
+  const hora = ref(db,"Centinel01/Sensores/Tiempo");
+
+
 
   onValue(temperatura, (snapshot) => {
   var Sensores = [];
@@ -55,7 +58,7 @@ function GetAllDataRealtime(){
   });
   // Asignar los valores a los elementos HTML
   const temperatura_span = document.getElementById("temperatura_span");
-  temperatura_span.innerHTML = Sensores[1];
+  temperatura_span.innerHTML = Sensores[0];
 });
 onValue(humedad,(snapshot)=>{
   var Sensores = [];
@@ -64,7 +67,7 @@ onValue(humedad,(snapshot)=>{
   });
 
   const humedad_span = document.getElementById("humedad_span");
-  humedad_span.innerHTML = Sensores[1];
+  humedad_span.innerHTML = Sensores[0];
 });
 
 //Humedad del suelo
@@ -77,7 +80,7 @@ onValue(humedad,(snapshot)=>{
      // Asignar los valores a los elementos HTML
   document.getElementById("hora_co2").innerHTML = "Hora: " + Sensores[0];
   const co2_span = document.getElementById("co2_span");
-  co2_span.innerHTML = Sensores[1];
+  co2_span.innerHTML = Sensores[0];
   });
   onValue(gas,(snapshot)=>{
     var Sensores = [];
@@ -85,7 +88,7 @@ onValue(humedad,(snapshot)=>{
         Sensores.push(childSnapshot.val());
     });
   const gas_span = document.getElementById("gas_span");
-  gas_span.innerHTML = Sensores[1];
+  gas_span.innerHTML = Sensores[0];
   });
   onValue(smoke,(snapshot)=>{
     var Sensores = [];
@@ -93,7 +96,7 @@ onValue(humedad,(snapshot)=>{
         Sensores.push(childSnapshot.val());
     });
   const smoke_span = document.getElementById("smoke_span");
-  smoke_span.innerHTML = Sensores[1];
+  smoke_span.innerHTML = Sensores[0];
   });
   //Luminosidad
 }

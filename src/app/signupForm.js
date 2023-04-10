@@ -22,17 +22,22 @@ signUpForm.addEventListener("submit", async (e) => {
     signUpForm.reset();
 
     // show welcome message
-    showMessage("Welcome" + userCredentials.user.email);
+    // showMessage("Bienvenido a PlantLink " + userCredentials.user.email);
+    Swal.fire({
+      title: '¡Bienvenido a PlantLink!+ userCredentials.user.email',
+      imageUrl: 'public/index_estilos/img/core-img/plantlink_logo33.png',
+      imageHeight: 200
+  });
 
   } catch (error) {
     if (error.code === 'auth/email-already-in-use') {
-      showMessage("Email already in use", "error")
+      showMessage("Este correo ya esta registrado", "error")
     } else if (error.code === 'auth/invalid-email') {
-      showMessage("Invalid email", "error")
+      showMessage("Correo incorrecto", "error")
     } else if (error.code === 'auth/weak-password') {
-      showMessage("Weak password", "error")
+      showMessage("Contraseña incorrecta", "error")
     } else if (error.code) {
-      showMessage("Something went wrong", "error")
+      showMessage("Algo salio mal", "error")
     }
   }
 
