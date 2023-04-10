@@ -211,11 +211,9 @@
                 <div class="modal-body ">
                     <form id="signup-form">
                         <label for="email"><b>Correo:</label>
-                        <input type="text" id="signup-email" class="form-control mb-3" placeholder="tu-email@gmail.com"
-                            required>
+                        <input type="email" id="signup-email" class="form-control mb-3" placeholder="Registra tu correo Gmail, Outlook o Hotmail" required pattern="[a-zA-Z0-9._%+-]+@(gmail|hotmail|outlook)\.com">
                         <label for="password">Contraseña:</label></b>
-                        <input type="password" id="signup-password" class="form-control mb-3"
-                            placeholder="tu-contraseña" required>
+                        <input type="text" id="signup-text" class="form-control mb-3" placeholder="Escribe al menos 5 palabras con números y letras" required pattern="(?=(?:\D*\d){1})(?=(?:\w*\W){4})(?=\S+$).{1,}">
                         <button type="submit" class="btn btn-success">Guardar</button>
                     </form>
                 </div>

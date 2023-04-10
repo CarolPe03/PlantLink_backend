@@ -23,11 +23,6 @@ signUpForm.addEventListener("submit", async (e) => {
 
     // show welcome message
     // showMessage("Bienvenido a PlantLink " + userCredentials.user.email);
-    Swal.fire({
-      title: '¡Bienvenido a PlantLink!+ userCredentials.user.email',
-      imageUrl: 'public/index_estilos/img/core-img/plantlink_logo33.png',
-      imageHeight: 200
-  });
 
   } catch (error) {
     if (error.code === 'auth/email-already-in-use') {
