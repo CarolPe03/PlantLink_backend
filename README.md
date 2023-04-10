@@ -3,7 +3,7 @@
 ### Installation
 
 ```sh
-git clone https://github.com/FaztWeb/firebase-auth-example
+
 cd firebase-auth-example
 npm i
 ```
