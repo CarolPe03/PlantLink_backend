@@ -41,15 +41,48 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getDatabase();
 
+
 function GetAllDataRealtime(){
   const temperatura = ref(db,"Centinel01/Sensores/Temperatura");
-  const co2 = ref(db,"Centinel01/Sensores/CO2"); 
   const gas = ref(db,"Centinel01/Sensores/Gas"); 
   const humedad = ref(db,"Centinel01/Sensores/Humedad");
   const smoke = ref(db,"Centinel01/Sensores/Smoke");
-  const hora = ref(db,"Centinel01/Sensores/Tiempo");
+  const hora = ref(db, "Centinel01/Sensores/Tiempo");
+  const co2 = ref(db,"Centinel01/Sensores/CO2");  
+  const suelo = ref(db, "Centinel01/Sensores/HumedadDelSuelo");
+  const luz = ref(db, "Centinel01/Sensores/IntensidadLuz");
 
 
+
+  onValue(luz, (snapshot) => {
+  var Sensores = [];
+  snapshot.forEach((childSnapshot) => {
+    Sensores.push(childSnapshot.val());
+  });
+  const luz_span = document.getElementById("luz_span");
+  luz_span.innerHTML = Sensores[0];
+});
+
+
+  onValue(suelo, (snapshot) => {
+  var Sensores = [];
+  snapshot.forEach((childSnapshot) => {
+    Sensores.push(childSnapshot.val());
+  });
+  const suelo_span = document.getElementById("suelo_span");
+  suelo_span.innerHTML = Sensores[0];
+});
+
+
+
+  onValue(hora, (snapshot) => {
+  var Sensores = [];
+  snapshot.forEach((childSnapshot) => {
+    Sensores.push(childSnapshot.val());
+  });
+  const hora_span = document.getElementById("hora_span");
+  hora_span.innerHTML = Sensores[0];
+});
 
   onValue(temperatura, (snapshot) => {
   var Sensores = [];
@@ -60,6 +93,8 @@ function GetAllDataRealtime(){
   const temperatura_span = document.getElementById("temperatura_span");
   temperatura_span.innerHTML = Sensores[0];
 });
+
+
 onValue(humedad,(snapshot)=>{
   var Sensores = [];
   snapshot.forEach(childSnapshot => {
@@ -72,16 +107,17 @@ onValue(humedad,(snapshot)=>{
 
 //Humedad del suelo
 
- onValue(co2,(snapshot)=>{
-    var Sensores = [];
-    snapshot.forEach(childSnapshot => {
-        Sensores.push(childSnapshot.val());
-    });
-     // Asignar los valores a los elementos HTML
-  document.getElementById("hora_co2").innerHTML = "Hora: " + Sensores[0];
+
+
+onValue(co2, (snapshot) => {
+  var Sensores = [];
+  snapshot.forEach((childSnapshot) => {
+    Sensores.push(childSnapshot.val());
+  });
   const co2_span = document.getElementById("co2_span");
   co2_span.innerHTML = Sensores[0];
-  });
+});
+
   onValue(gas,(snapshot)=>{
     var Sensores = [];
     snapshot.forEach(childSnapshot => {
@@ -117,7 +153,10 @@ btnVolver.addEventListener('click', e => {
     </div>
   </div>
 <br><br>
-<h2 id="hora_co2"></h2>
+
+<!-- <h2 id="hora_span"></h2> -->
+<h2>La hora actual es: <span id="hora_span"></span></h2>
+
 <!-- CONTENT (SENSOR READINGS) -->
 <div class="" id="" style="display: flex;">
 <div class="cards">
@@ -134,11 +173,12 @@ btnVolver.addEventListener('click', e => {
 <!-- MOISTURE -->
 <div class="card"> 
     <b><p><i class="fas fa-tint" style="color:#5a290d;"></i> HUMEDAD DEL SUELO</p></b>
+    <p><span class="reading"><span id="suelo_span"></span>%</span></p>
 </div>
 <!-- CO2 -->
 <div class="card">
     <b><p><i class="fas fa-cloud" style="color:#039dc0;"></i> CO2</p></b>
-  <p><span class="reading"><span id="co2_span"></span>ppm</span></p>
+    <p><span class="reading"><span id="co2_span"></span>ppm</span></p>
 </div>
 <!-- Gas -->
 <div class="card">
@@ -152,8 +192,19 @@ btnVolver.addEventListener('click', e => {
 </div>
 <!-- LIGHT -->
 <div class="card">
-    <b><p><i class="fas fa-lightbulb" style="color:#f7fb06;"></i> LUMINOSIDAD</p></b>
+    <b><p><i class="fas fa-solid fa-sun fa-lg" style="color:#d1d412;"></i> LUZ</p></b>
+    <p><span class="reading"><span id="luz_span"></span>%</span></p>
 </div>
+<!-- INSECTS -->
+<div class="card">
+  <b><p><i class="fas fa-sharp fa-solid fa-bug" style="color:#3b0420;"></i> INSECTOS</p></b>
+</div>
+<!-- TREE -->
+<div class="card">
+  <b><p><i class="fas fa-solid fa-tree" style="color:#1e5309;"></i> TALA DE ARBOLES</p></b>
+</div>
+
+
 </div>
 </div>
 <div class="button-container">
