@@ -14,7 +14,7 @@ Showcase
     left: 20%;
     min-height: 676px;
     width: 359px;
-    background: url('../img/movil/iphone-skeleton.png') no-repeat center center;
+    background: url('../img/movil/movil.png') no-repeat center center;
 }
 .device-content {
     position: absolute;
@@ -25,8 +25,8 @@ Showcase
     background: rgba(0, 0, 0, 0.3);
 }
 .device-content img {
-    width: 247px;
-    height: 445px;
+    width: 800px;
+    height: 600px;
 }
 .showcase-wrap {
     position: relative;
