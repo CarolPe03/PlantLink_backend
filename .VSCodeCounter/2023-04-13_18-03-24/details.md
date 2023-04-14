@@ -1,10 +1,10 @@
 # Details
 
-Date : 2023-04-11 19:47:03
+Date : 2023-04-13 18:03:24
 
-Directory d:\\firebase-auth-example-master
+Directory d:\\PlantLink
 
-Total : 69 files,  104388 codes, 444 comments, 3660 blanks, all 108492 lines
+Total : 69 files,  104490 codes, 600 comments, 3692 blanks, all 108782 lines
 
 [Summary](results.md) / Details / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
 
@@ -12,7 +12,7 @@ Total : 69 files,  104388 codes, 444 comments, 3660 blanks, all 108492 lines
 | filename | language | code | comment | blank | total |
 | :--- | :--- | ---: | ---: | ---: | ---: |
 | [README.md](/README.md) | Markdown | 15 | 0 | 7 | 22 |
-| [firebase.json](/firebase.json) | JSON | 11 | 4 | 0 | 15 |
+| [firebase.json](/firebase.json) | JSON | 17 | 3 | 0 | 20 |
 | [firestore.indexes.json](/firestore.indexes.json) | JSON | 4 | 0 | 1 | 5 |
 | [package-lock.json](/package-lock.json) | JSON | 12,721 | 0 | 1 | 12,722 |
 | [package.json](/package.json) | JSON | 23 | 0 | 1 | 24 |
@@ -31,7 +31,7 @@ Total : 69 files,  104388 codes, 444 comments, 3660 blanks, all 108492 lines
 | [src/app/signupForm.js](/src/app/signupForm.js) | JavaScript | 31 | 5 | 14 | 50 |
 | [src/app/volver.js](/src/app/volver.js) | JavaScript | 8 | 4 | 3 | 15 |
 | [src/contacto.html](/src/contacto.html) | HTML | 70 | 4 | 18 | 92 |
-| [src/index.html](/src/index.html) | HTML | 747 | 56 | 79 | 882 |
+| [src/index.html](/src/index.html) | HTML | 842 | 206 | 108 | 1,156 |
 | [src/main.js](/src/main.js) | JavaScript | 26 | 1 | 2 | 29 |
 | [src/perfil.html](/src/perfil.html) | HTML | 501 | 26 | 65 | 592 |
 | [src/public/css/bootstrap.min.css](/src/public/css/bootstrap.min.css) | CSS | 1 | 6 | 0 | 7 |
@@ -52,7 +52,7 @@ Total : 69 files,  104388 codes, 444 comments, 3660 blanks, all 108492 lines
 | [src/public/index_estilos/css/magnific-popup.css](/src/public/index_estilos/css/magnific-popup.css) | CSS | 1 | 0 | 0 | 1 |
 | [src/public/index_estilos/css/owl.carousel.min.css](/src/public/index_estilos/css/owl.carousel.min.css) | CSS | 1 | 5 | 0 | 6 |
 | [src/public/index_estilos/css/style.css](/src/public/index_estilos/css/style.css) | CSS | 146 | 3 | 28 | 177 |
-| [src/public/index_estilos/css/styles_movil.css](/src/public/index_estilos/css/styles_movil.css) | CSS | 37 | 3 | 5 | 45 |
+| [src/public/index_estilos/css/styles_movil.css](/src/public/index_estilos/css/styles_movil.css) | CSS | 44 | 4 | 8 | 56 |
 | [src/public/index_estilos/css/themify-icons.css](/src/public/index_estilos/css/themify-icons.css) | CSS | 1,077 | 1 | 4 | 1,082 |
 | [src/public/index_estilos/fonts/classy.svg](/src/public/index_estilos/fonts/classy.svg) | SVG | 11 | 0 | 0 | 11 |
 | [src/public/index_estilos/fonts/fontawesome-webfont.svg](/src/public/index_estilos/fonts/fontawesome-webfont.svg) | SVG | 2,671 | 0 | 1 | 2,672 |
@@ -78,7 +78,7 @@ Total : 69 files,  104388 codes, 444 comments, 3660 blanks, all 108492 lines
 | [src/public/js/owl.carousel.min.js](/src/public/js/owl.carousel.min.js) | JavaScript | 2 | 5 | 0 | 7 |
 | [src/public/js/popper.min.js](/src/public/js/popper.min.js) | JavaScript | 1 | 4 | 0 | 5 |
 | [src/public/sensores/style.css](/src/public/sensores/style.css) | CSS | 82 | 34 | 18 | 134 |
-| [src/sensores.html](/src/sensores.html) | HTML | 177 | 12 | 27 | 216 |
+| [src/sensores.html](/src/sensores.html) | HTML | 171 | 18 | 27 | 216 |
 | [src/verificacion.html](/src/verificacion.html) | HTML | 64 | 1 | 4 | 69 |
 
 [Summary](results.md) / Details / [Diff Summary](diff.md) / [Diff Details](diff-details.md)

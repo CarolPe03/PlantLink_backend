@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "fir-app-ea974"
-  }
+    "default": "dbsensors",
+    "PlantLink": "dbsensors"
+  },
+  "targets": {},
+  "etags": {}
 }
