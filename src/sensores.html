@@ -64,14 +64,34 @@ function GetAllDataRealtime(){
 });
 
 
-  onValue(suelo, (snapshot) => {
+   onValue(suelo, (snapshot) => {
   var Sensores = [];
   snapshot.forEach((childSnapshot) => {
     Sensores.push(childSnapshot.val());
-  });
+   });
   const suelo_span = document.getElementById("suelo_span");
-  suelo_span.innerHTML = Sensores[0];
-});
+   suelo_span.innerHTML = Sensores[0];
+ });
+
+ onValue(suelo, (snapshot) => {
+  var Sensores = [];
+  snapshot.forEach((childSnapshot) => {
+     Sensores.push(childSnapshot.val());
+  });
+   const suelo_span = document.getElementById("suelo_span");
+   suelo_span.innerHTML = Sensores[0];
+
+   // Verifica si la humedad del suelo es menor o igual a 20
+   if (Sensores[0] <= 8) {
+    // Si es así, muestra el mensaje de sugerencia
+    document.getElementById("mensaje_suelo").textContent = "Te sugerimos regar tu planta";
+     document.getElementById("mensaje_suelo").style.color = "blue";
+   } else {
+     // De lo contrario, oculta el mensaje
+    document.getElementById("mensaje_suelo").textContent = "Humedad optima";
+   }
+ });
+
 
 
 
@@ -116,6 +136,15 @@ onValue(co2, (snapshot) => {
   });
   const co2_span = document.getElementById("co2_span");
   co2_span.innerHTML = Sensores[0];
+   // Verifica si la humedad del suelo es menor o igual a 20
+   if (Sensores[0] >= 1000) {
+    // Si es así, muestra el mensaje de sugerencia
+    document.getElementById("mensaje_co2").textContent = "Alerta de posible incendio";
+    document.getElementById("mensaje_co2").style.color = "red";
+  } else {
+    // De lo contrario, oculta el mensaje
+    document.getElementById("mensaje_co2").textContent = "CO2 optimo";
+  }
 });
 
   onValue(gas,(snapshot)=>{
@@ -160,6 +189,30 @@ btnVolver.addEventListener('click', e => {
 <!-- CONTENT (SENSOR READINGS) -->
 <div class="" id="" style="display: flex;">
 <div class="cards">
+  <!-- Alertas -->
+
+ <div class="card">
+  <br>
+
+  <b><p><i class="fas fa-exclamation-circle" style="color: #d70617;"></i> ALERTAS</p></b>
+
+  
+</div>
+
+
+<div class="card">
+  <b><p><i class="fas fa-sharp fa-solid fa-fire" style="color: #db380f;"></i> INCENDIO</p></b>
+  <p><span class="reading"><span id="mensaje_co2"></span></span></p>
+</div>
+
+<div class="card">
+  <b><p><i class="fas fa-sharp fa-solid fa-shower" style="color: #3f7de9;"></i> RIEGO</p></b>
+  <p><span class="reading"><span id="mensaje_suelo"></span></span></p>
+
+</div>
+
+
+
 <!-- TEMPERATURE -->
 <div class="card">
  <b> <p><i class="fas fa-thermometer-half" style="color:#e72b3b;"></i> TEMPERATURA</p> </b>
@@ -171,10 +224,16 @@ btnVolver.addEventListener('click', e => {
   <p><span class="reading"><span id="humedad_span"></span>%</span></p>
 </div>
 <!-- MOISTURE -->
-<div class="card"> 
+ <div class="card"> 
     <b><p><i class="fas fa-tint" style="color:#5a290d;"></i> HUMEDAD DEL SUELO</p></b>
     <p><span class="reading"><span id="suelo_span"></span>%</span></p>
-</div>
+</div> 
+<!-- <div class="card"> 
+  <b><p><i class="fas fa-tint" style="color:#5a290d;"></i> HUMEDAD DEL SUELO</p></b>
+  <p><span class="reading"><span id="suelo_span"></span>%</span></p>
+  <p id="mensaje_suelo" style="color: red;"></p>
+</div> -->
+
 <!-- CO2 -->
 <div class="card">
     <b><p><i class="fas fa-cloud" style="color:#039dc0;"></i> CO2</p></b>
