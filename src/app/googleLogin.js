@@ -1,3 +1,4 @@
+
 import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js"
 import { auth } from "./firebase.js";
 import { showMessage } from "./showMessage.js";
@@ -17,8 +18,15 @@ googleButton.addEventListener("click", async (e) => {
     const modalInstance = bootstrap.Modal.getInstance(googleButton.closest('.modal'));
     modalInstance.hide();
 
-    // show welcome message
+    // Show welcome message
     showMessage("Bienvenido a PlantLink:  " + credentials.user.displayName);
+
+    // Obtén el correo electrónico del usuario
+    const userEmail = credentials.user.email;
+
+    // Actualiza el contenido del elemento HTML con el correo electrónico del usuario
+    document.getElementById("user-email").innerHTML = `<h1>Bienvenido a PlantLink: ${userEmail}</h1>`;
+
   } catch (error) {
     console.log(error);
   }
@@ -39,8 +47,15 @@ googleButton2.addEventListener("click", async (e) => {
     const modalInstance = bootstrap.Modal.getInstance(googleButton2.closest('.modal'));
     modalInstance.hide();
 
-    // show welcome message
-    showMessage("Bienvenido a PlantLink:  " + credentials.user.displayName);
+    // Show welcome message
+    //showMessage("Bienvenido a PlantLink:  " + credentials.user.displayName);
+
+    // Obtén el correo electrónico del usuario
+    const userEmail = credentials.user.displayName;
+    showMessage("Bienvenido a PlantLink:  " + userEmail);
+    // Actualiza el contenido del elemento HTML con el correo electrónico del usuario
+    document.getElementById("user-email").innerHTML = `<h1>Bienvenido a PlantLink: ${userEmail}</h1>`;
+
   } catch (error) {
     console.log(error);
   }
